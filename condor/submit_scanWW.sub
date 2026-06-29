@@ -1,0 +1,24 @@
+# HTCondor submit file for WW_mu_semileptonic energy scan.
+# Submit with:  ./condor/submit_scanWW.sh
+#
+universe        = vanilla
+executable      = /afs/cern.ch/user/l/lberiet/FCC-ee_CKM/condor/run_scanWW_worker.sh
+arguments       = $(Energy)
+
+output          = /afs/cern.ch/user/l/lberiet/FCC-ee_CKM/condor/logs/scanWW_$(ClusterId).$(ProcId).out
+error           = /afs/cern.ch/user/l/lberiet/FCC-ee_CKM/condor/logs/scanWW_$(ClusterId).$(ProcId).err
+log             = /afs/cern.ch/user/l/lberiet/FCC-ee_CKM/condor/logs/scanWW_$(ClusterId).log
+
+environment     = "CLUSTER_ID=$(ClusterId) PROC_ID=$(ProcId)"
+
+request_cpus    = 1
+request_memory  = 6000
++JobFlavour     = "tomorrow"
+
+should_transfer_files = NO
+
+# Uncomment on lxplus if your batch slot requires a proxy:
+# use_x509userproxy = True
+# x509userproxy     = $ENV(X509_USER_PROXY)
+
+queue Energy from /afs/cern.ch/user/l/lberiet/FCC-ee_CKM/condor/energies_pending.txt

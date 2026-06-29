@@ -1,0 +1,31 @@
+import model sm-ckm
+
+# FCC-ee: e+ e- -> W+ W- with semileptonic decays (one W to e+vm, the other to qq~) (LO)
+# sm-ckm uses physical Wolfenstein parameters (lamWS~0.225) so off-diagonal
+# CKM decays (Vus, Vcd) are non-zero.  The default 'sm' sets lamWS=0 which
+# kills all Cabibbo-suppressed decays at diagram levml.
+#
+# W decay convmntion: W- carries charge -1.
+#   W- -> u~ d  (Vud, CKM-favoured)
+#   W- -> c~ s  (Vcs, CKM-favoured)
+#   W- -> u~ s  (Vus, Cabibbo-suppressed)
+#   W- -> c~ d  (Vcd, Cabibbo-suppressed)
+#
+# Both charge-conjugate topologies are included (W+ leptonic + W- hadronic,
+# and W- leptonic + W+ hadronic).
+
+# W+ leptonic (e+ vm), W- hadronic
+# generate e+ e- > w+ w-, (w+ > mu+ vm), (w- > u~ d)
+# add process e+ e- > w+ w-, (w+ > mu+ vm), (w- > c~ s)
+# add process e+ e- > w+ w-, (w+ > mu+ vm), (w- > u~ s)
+# add process e+ e- > w+ w-, (w+ > mu+ vm), (w- > c~ d)
+
+# W- leptonic (e- vm~), W+ hadronic (charge-conjugate)
+add process e+ e- > w+ w-, (w+ > u d~), (w- > mu- vm~)
+add process e+ e- > w+ w-, (w+ > c s~), (w- > mu- vm~)
+add process e+ e- > w+ w-, (w+ > u s~), (w- > mu- vm~)
+add process e+ e- > w+ w-, (w+ > c d~), (w- > mu- vm~)
+
+output WW_mu_semileptonic_MINUS_TEST
+# Save Feynman diagrams as EPS: WW_mu_semileptonic_MINUS_TEST/diagrams_<process>.eps
+display diagrams WW_mu_semileptonic_MINUS_TEST

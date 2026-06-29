@@ -1,0 +1,17 @@
+# External frameworks (cloned separately, not your code)
+FCCAnalyses/
+ttZ_differential/
+MG5_aMC_v3_7_1/
+
+# Generated / large binary files
+*.pdf
+*.png
+*.root
+condor/output*/
+condor/log*/
+condor/error*/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo

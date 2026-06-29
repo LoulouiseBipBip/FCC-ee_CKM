@@ -1,0 +1,11 @@
+import model sm-lepton_masses
+
+# FCC-ee: e+ e- -> q q~ (continuum qqbar, LO)
+# Includes gamma*, Z*, and pure QED s-channel diagrams.
+generate e+ e- > u u~
+add process e+ e- > d d~
+add process e+ e- > s s~
+add process e+ e- > c c~
+add process e+ e- > b b~
+
+output continuum_qqbar

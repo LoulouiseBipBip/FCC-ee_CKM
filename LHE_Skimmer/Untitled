@@ -1,0 +1,49 @@
+/*
+    Usage:
+      root -l -q 'plot_quark_pt.C("myfile.root")'
+    Plots "photonPt" histogram from "lheEvents" tree in the input ROOT file.
+*/
+
+#include "TFile.h"
+#include "TTree.h"
+#include "TH1D.h"
+#include "TCanvas.h"
+#include "TString.h"
+#include "TColor.h"
+#include <iostream>
+
+void plot_quark_pt(TString filename = "/afs/cern.ch/user/l/lberiet/FCC-ee_CKM/MG5_aMC_v3_7_1/Zphoton_qqbar/Events/run_240GeV/unweighted_events.lhe_zgammaWITHOUTcuts.root") {
+    // Open file
+    TFile* f = TFile::Open(filename);
+    if (!f || f->IsZombie()) {
+        std::cerr << "ERROR: Cannot open file " << filename << std::endl;
+        return;
+    }
+
+    // Get tree
+    TTree* tree = (TTree*)f->Get("lheEvents");
+    if (!tree) {
+        std::cerr << "ERROR: Tree 'lheEvents' not found in " << filename << std::endl;
+        f->Close();
+        return;
+    }
+
+    // Create histogram
+    TH1D* h = new TH1D("h_photonPt", "photon Pt;photon p_{T} [GeV];Events", 50, 0.0, 100.0);
+
+    // Fill histogram
+    tree->Draw("photonPt>>h_photonPt", "", "goff");
+
+    // Draw plot
+    TCanvas* c = new TCanvas("c_photonPt", "photon p_{T}", 800, 600);
+    h->SetLineColor(kAzure+1);
+    h->SetLineWidth(2);
+    h->Draw("HIST");
+
+    c->SaveAs("photonPt.pdf");
+    std::cout << "Saved photonPt.pdf" << std::endl;
+
+    f->Close();
+    delete c;
+    delete h;
+}

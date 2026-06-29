@@ -1,0 +1,11 @@
+launch /afs/cern.ch/user/l/lberiet/FCC-ee_CKM/MG5_aMC_v3_7_1/Zphoton_qqbar -n run_91GeV
+  set lpp1 0
+  set lpp2 0
+  set ebeam1 45.6
+  set ebeam2 45.6
+  set nevents 10000
+  set iseed 0
+  set pta 20.0
+  set etaa -1.0
+  set cut_decays False
+done

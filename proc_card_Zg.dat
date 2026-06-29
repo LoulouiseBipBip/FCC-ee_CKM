@@ -1,0 +1,11 @@
+import model sm-lepton_masses
+
+# FCC-ee: e+ e- -> Z gamma with Z -> qqbar (LO)
+# The Z decay is done inline to preserve spin correlations.
+generate e+ e- > z a, (z > u u~)
+add process e+ e- > z a, (z > d d~)
+add process e+ e- > z a, (z > s s~)
+add process e+ e- > z a, (z > c c~)
+add process e+ e- > z a, (z > b b~)
+
+output Zphoton_qqbar_mefixed

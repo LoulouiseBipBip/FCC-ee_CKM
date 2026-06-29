@@ -1,0 +1,28 @@
+import model sm-ckm
+
+# FCC-ee: e+ e- -> l nu q q~ (semileptonic WW topology, no explicit W in the process).
+# Final-state quarks follow the W- hadronic convention used in proc_card_WW.dat:
+#   W- -> u~ d  (Vud), c~ s (Vcs), u~ s (Vus), c~ d (Vcd)
+# MG5 then generates all contributing diagrams (including off-shell W/Z).
+#
+# Note: u d~ is wrong for this charge topology (W- decay); use u~ d instead.
+
+# e+ nu_e + W- hadronic (matches W+ leptonic / W- hadronic in proc_card_WW.dat)
+generate e+ e- > e+ ve u~ d
+add process e+ e- > e+ ve c~ s
+add process e+ e- > e+ ve u~ s
+add process e+ e- > e+ ve c~ d
+
+# mu+ nu_mu + W- hadronic
+add process e+ e- > mu+ vm u~ d
+add process e+ e- > mu+ vm c~ s
+add process e+ e- > mu+ vm u~ s
+add process e+ e- > mu+ vm c~ d
+
+# Charge-conjugate: e- nu_e~ + W+ hadronic (uncomment if needed)
+# add process e+ e- > e- ve~ u d~
+# add process e+ e- > e- ve~ c s~
+# add process e+ e- > e- ve~ u s~
+# add process e+ e- > e- ve~ c d~
+
+output lnuqq_semileptonic
