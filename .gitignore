@@ -1,4 +1,4 @@
-# External frameworks (cloned separately, not your code)
+# External frameworks 
 FCCAnalyses/
 ttZ_differential/
 MG5_aMC_v3_7_1/
@@ -9,7 +9,8 @@ MG5_aMC_v3_7_1/
 *.root
 condor/output*/
 condor/log*/
-condor/error*/
+condor/error*/\
+*.csv
 
 # Python cache
 __pycache__/
