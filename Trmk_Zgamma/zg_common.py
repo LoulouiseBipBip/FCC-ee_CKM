@@ -1200,6 +1200,22 @@ def define_tag_probe(df):
     return df
 
 
+def define_mc_pv(df):
+    """Generator primary vertex, in mm.
+
+    Same columns as the reco-PV treemakers.  This chain does not fit a
+    vertex, so pv_res* is not defined.
+    Requires mc_particles (define_gen_zg).
+    """
+    df = df.Define(
+        "mc_pv_p4",
+        "FCCAnalyses::MCParticle::get_EventPrimaryVertexP4()(mc_particles)")
+    df = df.Define("mc_pv_x", "(double)mc_pv_p4.X()")
+    df = df.Define("mc_pv_y", "(double)mc_pv_p4.Y()")
+    df = df.Define("mc_pv_z", "(double)mc_pv_p4.Z()")
+    return df
+
+
 def define_truth_matching(df):
     """dR jet<->hard-quark assignment with the swap margin."""
     df = df.Define("dR_j1q1", "(double)jet1.Vect().Angle(gen_q1_p4.Vect())")
@@ -1218,6 +1234,10 @@ def define_truth_matching(df):
 # ═════════════════════════════════════════════════════════════════════════════
 # Branch lists -- kept here so the two treemakers cannot drift in output either
 # ═════════════════════════════════════════════════════════════════════════════
+
+def mc_pv_branches():
+    return ["mc_pv_x", "mc_pv_y", "mc_pv_z"]
+
 
 def gen_branches(with_isr=True):
     out = [
